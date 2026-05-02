@@ -1,0 +1,19 @@
+{
+  "name": "publitas-backend-challenge-daniel-garcia",
+  "version": "1.0.0",
+  "description": "This is Daniel Garcia's code challenge for Publitas Junior NodeJs Developer position",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tsx app/index.ts"
+  },
+  "author": "Daniel Garcia",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.6.0"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.7.2"
+  }
+}
