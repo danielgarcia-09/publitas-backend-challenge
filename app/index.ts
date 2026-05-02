@@ -37,7 +37,7 @@ const checkFeedXML = () => {
     "[description]": item.description,
   }));
 
-  console.log("❗ ~ checkFeedXML ~ items:", formattedItems.length);
+  console.log("❗ ~ checkFeedXML ~ num of items:", formattedItems.length);
 
   const size = Buffer.byteLength(JSON.stringify(formattedItems));
   console.log("❗ ~ checkFeedXML ~ size:", bytesToSize(size));
@@ -46,18 +46,27 @@ const checkFeedXML = () => {
     externalService.call(JSON.stringify(batch));
   });
 
-  console.log(
-    "❗ ~ checkFeedXML ~ batches:",
-    batches.map((batch) => {
-      const firstItem = batch[0];
-      const size = Buffer.byteLength(JSON.stringify(batch));
-      return {
-        firstItem,
-        length: batch.length,
-        size: bytesToSize(size),
-      };
-    }),
+  const finalResult = batches.map((batch) => {
+    const size = Buffer.byteLength(JSON.stringify(batch));
+    return {
+      length: batch.length,
+      size: bytesToSize(size),
+    };
+  });
+
+  console.log("❗ ~ checkFeedXML ~ finalResult:", finalResult);
+
+  const totalOfItems = finalResult.reduce((acc, curr) => acc + curr.length, 0);
+
+  console.log("❗ ~ checkFeedXML ~ totalOfItems:", totalOfItems);
+
+  const totalOfSize = finalResult.reduce(
+    (acc, curr) => acc + curr.size.size,
+    0,
   );
+
+  const { formattedSize } = bytesToSize(totalOfSize);
+  console.log("❗ ~ checkFeedXML ~ totalOfSize:", formattedSize);
 };
 
 checkFeedXML();
